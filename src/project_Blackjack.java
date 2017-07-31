@@ -10,6 +10,7 @@ public class project_Blackjack {
 // create a random number generator and a scanner for user input
 	
 		Random generate = new Random();
+		int randomInt = 0;
 		Scanner kijang = new Scanner(System.in);
 		
 // define the card value array 
@@ -29,101 +30,141 @@ public class project_Blackjack {
 		System.out.println("");
 		
 // start the game
-		
-// first, deal two cards to the player
-		
-		int r1 = generate.nextInt(51);;
-		
-		while (Cards[r1] == 0){
-			r1 = generate.nextInt(51);
-		}
-		
-		int p_c1 = Cards[r1];
-		Cards[r1] = 0;
-		// System.out.println(p_c1);
-		System.out.println(Display(p_c1));
-		
-		int r2 = generate.nextInt(51);;
-		
-		while (Cards[r2] == 0){
-			r2 = generate.nextInt(51);
-		}
-		
-		int p_c2 = Cards[r2];
-		Cards[r2] = 0;
-		// System.out.println(p_c2);
-		System.out.println(Display(p_c2));
 
-		System.out.println("");
 		
-// next, deal two cards to the house
+// first, create two arrays of 5 cards max for both the player and house
 		
-		int r3 = generate.nextInt(51);
+		int [] player = {-1,-1,-1,-1,-1};
+		int[] house = {-1,-1,-1,-1,-1};
 		
-		while (Cards[r3] == 0){
-			r3 = generate.nextInt(51);
+// deal two card to the player and the house, as follows: player/house/player/house
+		
+		// player Card 1
+		
+		randomInt = generate.nextInt(51);;
+		
+		while (Cards[randomInt] == 0){
+			randomInt = generate.nextInt(51);
 		}
+	
+		System.out.println(Display(Cards[randomInt]));
+		player[0] = Cards[randomInt]%13;
+		Cards[randomInt] = 0;
 		
-		int h_c1 = Cards[r3];
-		Cards[r3] = 0;
-		// System.out.println(h_c1);
-		// System.out.println(Display(h_c1));
+		// house Card 1
 		
-		int r4 = generate.nextInt(51);
+		randomInt = generate.nextInt(51);
 		
-		while (Cards[r4] == 0){
-			r4 = generate.nextInt(51);
+		while (Cards[randomInt] == 0){
+			randomInt = generate.nextInt(51);
 		}
-		
-		int h_c2 = Cards[r4];
-		Cards[r4] = 0;
-		// System.out.println(h_c2);
-		// System.out.println(Display(h_c2));
-		
-		
-		int p_total = RoyaltyHandler(p_c1%13) + RoyaltyHandler(p_c2%13);
-		int h_total = RoyaltyHandler(h_c1%13) + RoyaltyHandler(h_c2%13);
-		
-		if (Blackjack(p_total) && !Blackjack(h_total)) System.out.println("Blackjack! You win!!!"); 
-		if (Blackjack(h_total) && !Blackjack(p_total)) System.out.println("The house has a blackjack. The house always wins."); 
-		if (Blackjack(h_total) && Blackjack(p_total)) System.out.println("Draw."); 
-		
-		System.out.println("Would you like another card?");
-		int response = kijang.nextInt();
 
-// if player says no, game ends. 
+		// System.out.println(Display(Cards[randomInt]));
+		house[0] = Cards[randomInt]%13;
+		Cards[randomInt] = 0;
 		
-		if (response == 0){
-			if (p_total > h_total) System.out.println("You win. Take home $" + (bet_player + bet_house));
-			else System.out.println ("You've lost your $" + bet_player + ". The house had " + h_total + ". Go home, loser");
+		// player Card 2
+		
+		randomInt = generate.nextInt(51);;
+		
+		while (Cards[randomInt] == 0){
+			randomInt = generate.nextInt(51);
 		}
 		
-// if player says yes, continue
+		System.out.println(Display(Cards[randomInt]));
+		player[1] = Cards[randomInt]%13;
+		Cards[randomInt] = 0;
 		
-		if (response == 1){
-			int r5 = generate.nextInt(51);;
+		// house Card 2
+		
+		randomInt = generate.nextInt(51);
+		
+		while (Cards[randomInt] == 0){
+			randomInt = generate.nextInt(51);
+		}
+		
+		// System.out.println(Display(Cards[randomInt]));
+		house[1] = Cards[randomInt]%13;
+		Cards[randomInt] = 0;
+		
+// now, we ask the player if they want another card or not. they can have up to five cards.
+		
+		int position_p = 2; // this is the next array position to fill. we'll increment this as needed.
+		
+		while (position_p < 5){
+			System.out.println("");
+			System.out.println("Would you like another card?");
+			int response = kijang.nextInt();
 			
-			while (Cards[r5] == 0){
-				r5 = generate.nextInt(51);
+			if (response == 0) break; // if player says no, we stop dealing them cards.
+			
+			randomInt = generate.nextInt(51);;
+			
+			while (Cards[randomInt] == 0){
+				randomInt = generate.nextInt(51);
 			}
 			
-			int p_c3 = Cards[r5];
-			Cards[r5] = 0;
-			// System.out.println(p_c3);
-			System.out.println(Display(p_c3));
-		
-			p_total += RoyaltyHandler(p_c3%13);
+			System.out.println(Display(Cards[randomInt]));
+			player[position_p] = Cards[randomInt]%13;
+			Cards[randomInt] = 0;
+			
+			if (Fold(HandValue(player))){
+				System.out.println("Too smart for your own good. You've folded! Leave your $" + bet_player + " and move aside, rookie.");
+				break;
+			}
+			
+			position_p ++;
 		}
-
-		System.out.println("");
-		if (Fold(p_total)) System.out.println("You fold. Get lost.");	
-		else if (p_total > h_total) System.out.println("You win. Take home $" + (bet_player + bet_house));
-		else System.out.println ("You've lost your $" + bet_player + ". The house had " + h_total + ". Go home, loser.");
 		
+		
+// having served the player, we keep drawing cards for the house until it has at least 17
+		
+		int position_h = 2;
+		
+		while (HandValue(house) < 17){
+			randomInt = generate.nextInt(51);
+			
+			while (Cards[randomInt] == 0){
+				randomInt = generate.nextInt(51);
+			}
+			
+			System.out.println(Display(Cards[randomInt]));
+			house[position_h] = Cards[randomInt]%13;
+			Cards[randomInt] = 0;	
+			position_h ++;
+		}
+		
+// now, we have the final hands of the player and the house. we iterate through the results.
+		
+// possibilities (in this order): House Folds >> Player Wins >> Draw >> House Wins
+		
+			System.out.println("");
+			if(Fold(HandValue(house))) System.out.println("The house has folded. Take home $" + (bet_player + bet_house) + ".");
+			else if (HandValue(player) > HandValue(house)) System.out.println("You win. Take home $" + (bet_player + bet_house) + ". The house had " + HandValue(house) + ", btw.");
+			else if (HandValue(player) == HandValue(house)) System.out.println("Draw. Take back your $" + bet_player + ".");
+			else System.out.println ("You've lost your $" + bet_player + ". The house had " + HandValue(house) + ". Go home, rookie.");
+		
+				
+}
+		
+
+	public static int HandValue (int[] n){
+		int sum = 0;
+		
+		for (int i = 0; i < n.length; i++){
+			if (n[i] == -1) continue;
+			sum += RoyaltyHandler(n[i]);
+		}
+		
+		for (int i = 0; i < n.length; i++){
+			if (n[i] == 1 && (sum+10) <= 21) sum += 10;
+		}
+		
+		return sum;
 	}
 	
+	
 	public static int RoyaltyHandler (int n){
-		if (n == 1) return 11;
 		if (n == 0 || n == 11 || n == 12) return 10;
 		else return n;
 	}
