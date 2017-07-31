@@ -109,6 +109,7 @@ public class project_Blackjack {
 			Cards[randomInt] = 0;
 			
 			if (Fold(HandValue(player))){
+				System.out.println("");
 				System.out.println("Too smart for your own good. You've folded! Leave your $" + bet_player + " and move aside, rookie.");
 				break;
 			}
@@ -128,7 +129,7 @@ public class project_Blackjack {
 				randomInt = generate.nextInt(51);
 			}
 			
-			System.out.println(Display(Cards[randomInt]));
+			// System.out.println(Display(Cards[randomInt]));
 			house[position_h] = Cards[randomInt]%13;
 			Cards[randomInt] = 0;	
 			position_h ++;
@@ -139,12 +140,16 @@ public class project_Blackjack {
 // possibilities (in this order): House Folds >> Player Wins >> Draw >> House Wins
 		
 			System.out.println("");
+			
+			if (!Fold(HandValue(player))) {
 			if(Fold(HandValue(house))) System.out.println("The house has folded. Take home $" + (bet_player + bet_house) + ".");
 			else if (HandValue(player) > HandValue(house)) System.out.println("You win. Take home $" + (bet_player + bet_house) + ". The house had " + HandValue(house) + ", btw.");
 			else if (HandValue(player) == HandValue(house)) System.out.println("Draw. Take back your $" + bet_player + ".");
 			else System.out.println ("You've lost your $" + bet_player + ". The house had " + HandValue(house) + ". Go home, rookie.");
-		
-				
+			}
+			
+
+			System.out.println("Your code took " + ((System.nanoTime() - start) / 1000000000) + " seconds to execute.");
 }
 		
 
@@ -155,6 +160,9 @@ public class project_Blackjack {
 			if (n[i] == -1) continue;
 			sum += RoyaltyHandler(n[i]);
 		}
+		
+		// next, we provide the special handling of the Ace
+		// if the value of the hand (minus the Ace) is not more than 10, the Ace may count as 11
 		
 		for (int i = 0; i < n.length; i++){
 			if (n[i] == 1 && (sum+10) <= 21) sum += 10;

@@ -30,8 +30,7 @@ public class algo_DP_basic {
 	    
 		System.out.println(sumFinal);
 
-		double duration = (System.nanoTime() - start) / 1000000000;
-		System.out.println("Your code took " + duration + " seconds to execute.");
+		System.out.println("Your code took " + ((System.nanoTime() - start) / 1000000000) + " seconds to execute.");
 	}
 	
 }
