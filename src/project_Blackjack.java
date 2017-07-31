@@ -4,8 +4,6 @@ import java.util.Random;
 public class project_Blackjack {
 
 	public static void main(String[] args) {
-
-		double start = System.nanoTime();
 		
 // create a random number generator and a scanner for user input
 	
@@ -39,53 +37,29 @@ public class project_Blackjack {
 		
 // deal two card to the player and the house, as follows: player/house/player/house
 		
-		// player Card 1
+		for (int i = 0; i<= 1; i++) {
+			
+			randomInt = generate.nextInt(51);;
+			
+			while (Cards[randomInt] == 0){
+				randomInt = generate.nextInt(51);
+			}
 		
-		randomInt = generate.nextInt(51);;
-		
-		while (Cards[randomInt] == 0){
+			System.out.println(Display(Cards[randomInt]));
+			player[i] = Cards[randomInt]%13;
+			Cards[randomInt] = 0;
+			
 			randomInt = generate.nextInt(51);
-		}
-	
-		System.out.println(Display(Cards[randomInt]));
-		player[0] = Cards[randomInt]%13;
-		Cards[randomInt] = 0;
-		
-		// house Card 1
-		
-		randomInt = generate.nextInt(51);
-		
-		while (Cards[randomInt] == 0){
-			randomInt = generate.nextInt(51);
-		}
+			
+			while (Cards[randomInt] == 0){
+				randomInt = generate.nextInt(51);
+			}
 
-		// System.out.println(Display(Cards[randomInt]));
-		house[0] = Cards[randomInt]%13;
-		Cards[randomInt] = 0;
-		
-		// player Card 2
-		
-		randomInt = generate.nextInt(51);;
-		
-		while (Cards[randomInt] == 0){
-			randomInt = generate.nextInt(51);
+			// System.out.println(Display(Cards[randomInt]));
+			house[i] = Cards[randomInt]%13;
+			Cards[randomInt] = 0;
+			
 		}
-		
-		System.out.println(Display(Cards[randomInt]));
-		player[1] = Cards[randomInt]%13;
-		Cards[randomInt] = 0;
-		
-		// house Card 2
-		
-		randomInt = generate.nextInt(51);
-		
-		while (Cards[randomInt] == 0){
-			randomInt = generate.nextInt(51);
-		}
-		
-		// System.out.println(Display(Cards[randomInt]));
-		house[1] = Cards[randomInt]%13;
-		Cards[randomInt] = 0;
 		
 // now, we ask the player if they want another card or not. they can have up to five cards.
 		
@@ -148,8 +122,6 @@ public class project_Blackjack {
 			else System.out.println ("You've lost your $" + bet_player + ". The house had " + HandValue(house) + ". Go home, rookie.");
 			}
 			
-
-			System.out.println("Your code took " + ((System.nanoTime() - start) / 1000000000) + " seconds to execute.");
 }
 		
 
