@@ -1,11 +1,11 @@
 
-public class recursion_fibonacci {
+public class algo_Recursion_Fibonacci {
 	
 	public static void main (String [] args) {
 		
 		double start = System.nanoTime(); // This is just for me to show you how long a program takes to run.
 		
-		int x = 45;
+		int x = 30;
 		
 		System.out.println(Fibonacci(x));
 

@@ -1,5 +1,5 @@
 
-public class basics_2 {
+public class basics_DoWhile {
 
 	public static void main(String[] args) {
 		

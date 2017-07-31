@@ -1,6 +1,8 @@
 import java.util.Arrays;
 
-public class bubbly {
+// demonstration of the bubble sort algorithm
+
+public class algo_BubbleSort {
 
 	public static void main(String[] args) {
 

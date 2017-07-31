@@ -1,5 +1,5 @@
 
-public class dp1 {
+public class algo_DP_basic {
 
 	public static void main(String[] args) {
 

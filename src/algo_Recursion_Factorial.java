@@ -1,5 +1,5 @@
 
-public class recursion_factorial {
+public class algo_Recursion_Factorial {
 
 	public static void main(String[] args) {
 

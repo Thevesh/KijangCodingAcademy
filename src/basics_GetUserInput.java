@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
-public class basics_1 {
+// this file gives a sample of pulling in user input and processing it to give a conditional response
+
+public class basics_GetUserInput {
 
 	public static void main(String[] args) {
 		

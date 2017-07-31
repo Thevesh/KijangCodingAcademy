@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class blackjack {
+public class project_Blackjack {
 
 	public static void main(String[] args) {
 

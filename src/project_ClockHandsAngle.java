@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class project1 {
+public class project_ClockHandsAngle {
 
 	public static void main(String[] args) {
 		

@@ -1,6 +1,10 @@
 import java.math.BigInteger;
 
-public class recursion_factorial_biginteger {
+// this demonstrates what to do when Java's integer limit is reached
+// we use BigIntegers!
+// I demonstrate how we can calculate 1000 factorial here using the algorithm demonstrated in algo_Recursion_Factorial
+
+public class basics_BigInteger {
 
 	public static void main(String[] args) {
 

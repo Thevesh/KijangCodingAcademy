@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class project2 {
+public class project_DayOfTheDate {
 	
 	public static void main(String [] args){
 		
