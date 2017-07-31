@@ -19,3 +19,4 @@ Things to build (as of 31/7/17):
 3) Day of the Date calculator
 4) Blackjack machine
 5) Simple Encryption / Decryption using XOR
+6) Roulette machine
