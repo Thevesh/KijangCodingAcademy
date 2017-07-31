@@ -9,7 +9,7 @@ There are 3 types of files:
 How to Go About It:
 1. Begin with the basic files. See what's being done. Try and replicate it. Over the next few weeks, I'll insert a proper, fleshed-out set of instructions here.
 2. Work through the algorithms. Ask the people who came for the lessons what went down.
-3. Build!
+3. Build the projects (see list of things to build below)!
 
 
 
@@ -18,3 +18,4 @@ Things to build (as of 31/7/17):
 2) Angle Between Clock Hands calculator
 3) Day of the Date calculator
 4) Blackjack machine
+5) Simple Encryption / Decryption using XOR
